@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Aula27_28_29_30
 {
@@ -38,10 +39,55 @@ namespace Aula27_28_29_30
                 // Agora adicionamos o produto tratado na lista de produtos antes de retorna-la
                 produtos.Add(prod);
 
-            }
-            return produtos;
+            }   
+                /// <summary>
+                /// Separar
+                /// </summary>
+                /// <returns>Ordem alfabetica</returns>
+                produtos = produtos.OrderBy(y => y.Nome).ToList();
+                return produtos;
+                
         }
+            /// <summary>
+            /// Remove uma ou mais linhas que contem o termo
+            /// </summary>
+            /// <param name="_termo"></param>
+            public void Remover(string _termo){
+                //Criamos uma lista que servirá de um espécie de backup para as linhas do csv
+
+                List<string> linhas = new List<string>();
+
+                //Utilizamosa biblioteca StreamReader para ler nosso .csv
+                using(StreamReader arquivo = new StreamReader(PATH)){
+
+                    string linha;
+
+                  while((linha = arquivo.ReadLine()) != null)
+                  {
+                      linhas.Add(linha);
+                  }
+
+                }
+                //Removemos as linahs que tiverem o termo sendo passado como argumento
+                //codigo=5;nome=Riven;preco=58,59
+                //Riven
+                linhas.RemoveAll(l => l.Contains(_termo));
+
+                //Reescrevemos nosso csv do zero
+                using(StreamWriter output =  new StreamWriter(PATH))
+                {
+                    foreach(string ln in linhas)
+                    {
+                        output.Write(ln + "\n");
+                    }
+                }
+            }
+            
+
             //Buscar por Nome através da expressão lambda
+            List<Produto> Filtrar(string _nome){
+                return Ler().FindAll(x => x.Nome == _nome);
+            }
 
         /// <summary>
         /// Separar conteudo apresentado para o usuário

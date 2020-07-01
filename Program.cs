@@ -9,10 +9,11 @@ namespace Aula27_28_29_30
         {
             Produto p = new Produto();
             p.Codigo = 5;
-            p.Nome = "Atroox";
+            p.Nome = "Zed";
             p.Preco = 10f;
 
             p.Inserir(p);
+            p.Remover("Veigar");
 
             List<Produto> lista = p.Ler();
 
@@ -22,9 +23,9 @@ namespace Aula27_28_29_30
             }
 
             //Buscar por Nome através da expressão lambda
-            Produto riven = lista.Find(x => x.Nome == "Yasuo");
+            
 
-            System.Console.WriteLine(riven.Nome);
+            
 
             
 
