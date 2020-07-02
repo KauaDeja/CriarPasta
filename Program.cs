@@ -7,31 +7,29 @@ namespace Aula27_28_29_30
     {
         static void Main(string[] args)
         {
-            Produto p = new Produto();
-            p.Codigo = 5;
-            p.Nome = "Zed";
-            p.Preco = 10f;
 
-            p.Inserir(p);
-            p.Remover("Veigar");
+            Produto p1 = new Produto();
+            p1.Codigo = 1;
+            p1.Nome = "CS GO";
+            p1.Preco = 7500f;
 
-            List<Produto> lista = p.Ler();
+            p1.Cadastrar(p1);
+            p1.Remover("Fifa");
 
-            foreach(Produto item in lista){
-                Console.ForegroundColor = ConsoleColor.Green;
-                System.Console.WriteLine($"R$:{item.Preco} - {item.Nome}");
+            Produto alterado = new Produto();
+            alterado.Codigo = 2;
+            alterado.Nome = "Homem-Aranha";
+            alterado.Preco = 140f;
+
+            p1.Alterar(alterado);
+
+            List<Produto> lista = p1.Ler();
+
+            foreach(Produto item in lista)
+            {
+                Console.WriteLine($"R$ {item.Preco} - {item.Nome}");
             }
 
-            //Buscar por Nome através da expressão lambda
-            
-
-            
-
-            
-
-            
         }
-        
-        
     }
 }
